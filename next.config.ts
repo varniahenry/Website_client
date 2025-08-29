@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         port: '4200',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'necessary-luck-6eb7600ded.media.strapiapp.com/',
+        pathname: '/uploads/**',
+      },
     ],
   },
 };
