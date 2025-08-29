@@ -24,16 +24,13 @@ export default async function Home() {
 
   return (
     <main
-      className={`bg-[url(${
-        imagePath + data.backgroundImage.url
-      })] bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
+      className={`bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
       style={{
         backgroundImage:
-          imagePath + data.backgroundImage.url
-            ? `url('${imagePath + data.backgroundImage.url}')`
+          imagePath + data?.backgroundImage.url
+            ? `url('${imagePath}${data.backgroundImage.url}')`
             : 'none',
       }}>
-      {/* <div className='absolute inset-0 from-gray-900/75 to-gray-900/75 bg-gradient-to-r min-h-screen' /> */}
       <div className='relative z-10 text-white min-h-screen mx-auto'>
         <BlockRenderer blocks={blocks} />
       </div>
