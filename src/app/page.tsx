@@ -30,13 +30,12 @@ export default async function Home() {
 
   return (
     <main
-      className={`bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
+      // className={`bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
+      className={`text-white min-h-screen bg-no-repeat bg-center bg-cover sm:bg-center sm:bg-cover `}
       style={{
-        backgroundImage:
-          imagePath + data?.backgroundImage.url ? `url('${imageUrl}')` : 'none',
-        // imagePath + data?.backgroundImage.url
-        //   ? `url('${imagePath}${data.backgroundImage.url}')`
-        //   : 'none',
+        backgroundImage: data?.backgroundImage.url
+          ? `url('${imageUrl}')`
+          : 'none',
       }}>
       <div className='relative z-10 text-white min-h-screen mx-auto'>
         <BlockRenderer blocks={blocks} />
