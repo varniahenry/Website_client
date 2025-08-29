@@ -17,13 +17,18 @@ export function Hero({
   image,
   darken = false,
 }: Readonly<HeroProps>) {
+  const imageUrl = image?.url
+    ? image.url.startsWith('http')
+      ? image.url
+      : `${getStrapiURL()}${image.url}`
+    : null;
   return (
     <section
       className={`relative w-full min-h-[30rem] md:min-h-[45rem] md:pt-20 bg-center bg-no-repeat md:bg-top bg-cover  ${
         darken ? `bg-blend-overlay bg-black/60` : ''
       }`}
       style={{
-        backgroundImage: image?.url ? `url('${image.url}')` : 'none',
+        backgroundImage: image?.url ? `url('${imageUrl}')` : 'none',
       }}>
       <div className='w-full md:max-w-screen-xl text-center md:text-left p-5 items-center flex-col justify-center md:items-start mx-auto'>
         <div className=' max-w-xl md:max-w-2xl mb-5 mx-auto md:mx-0'>

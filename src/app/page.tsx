@@ -22,14 +22,18 @@ export default async function Home() {
   const blocks = data?.blocks || [];
   const imagePath = getStrapiURL();
 
+  const imageUrl = data.backgroundImage?.url
+    ? data.backgroundImage?.url.startsWith('http')
+      ? data.backgroundImage?.url
+      : `${imagePath}${data.backgroundImage?.url}`
+    : null;
+
   return (
     <main
       className={`bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
       style={{
         backgroundImage:
-          imagePath + data?.backgroundImage.url
-            ? `url('${data.backgroundImage.url}')`
-            : 'none',
+          imagePath + data?.backgroundImage.url ? `url('${imageUrl}')` : 'none',
         // imagePath + data?.backgroundImage.url
         //   ? `url('${imagePath}${data.backgroundImage.url}')`
         //   : 'none',
