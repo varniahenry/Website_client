@@ -5,13 +5,11 @@ import { notFound } from 'next/navigation';
 import { getStrapiURL } from '@/utils/get-strapi-url';
 import { Metadata } from 'next';
 
-export async function generateMetaData(): Promise<Metadata> {
-  return {
-    title: 'Varnia Henry | Musician | Public Speaker',
-    description:
-      'Canadian singer, songwriter, and speaker blending Calypso, Soca, and Jazz to spread joy. #Singer #Musician #Jazz #Calypso #Soca #PublicSpeaker',
-  };
-}
+export const metadata: Metadata = {
+  title: 'Varnia Henry | Musician | Public Speaker',
+  description:
+    'Canadian singer, songwriter, and speaker blending Calypso, Soca, and Jazz to spread joy. #Singer #Musician #Jazz #Calypso #Soca #PublicSpeaker',
+};
 
 async function loader() {
   const data = await getHomePage();

@@ -3,13 +3,11 @@ import { notFound } from 'next/navigation';
 import { BlockRenderer } from '@/src/components/BlockRenderer';
 import { Metadata } from 'next';
 
-export async function generateMetaData(): Promise<Metadata> {
-  return {
-    title: 'Varnia Henry | Musician | Public Speaker| Blog Page',
-    description:
-      'Learn about a vocalist and motivational speaker sharing culture, music, and stories across Canada and Trinidad. #Singer #Storyteller #Motivational',
-  };
-}
+export const metadata: Metadata = {
+  title: 'Varnia Henry | Musician | Public Speaker| Blog Page',
+  description:
+    'Learn about a vocalist and motivational speaker sharing culture, music, and stories across Canada and Trinidad. #Singer #Storyteller #Motivational',
+};
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);

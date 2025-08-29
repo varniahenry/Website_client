@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Anonymous_Pro } from 'next/font/google';
 import './globals.css';
 import { getHeaderAndFooter } from '../../data/loaders';

@@ -6,13 +6,11 @@ import { BlogPostList } from '@/src/components/BlogPostList';
 
 import { Metadata } from 'next';
 
-export async function generateMetaData(): Promise<Metadata> {
-  return {
-    title: 'Varnia Henry | Musician | Public Speaker| Blog Page',
-    description:
-      'Insights on music, Carnival, creativity, and joy from a Canadian-Trinidadian musician and speaker. #Music #JazzFusion #Fete #MotivationalSpeaker',
-  };
-}
+export const metadata: Metadata = {
+  title: 'Varnia Henry | Musician | Public Speaker| Blog Page',
+  description:
+    'Insights on music, Carnival, creativity, and joy from a Canadian-Trinidadian musician and speaker. #Music #JazzFusion #Fete #MotivationalSpeaker',
+};
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);

@@ -13,13 +13,11 @@ import {
 
 import { Metadata } from 'next';
 
-export async function generateMetaData(): Promise<Metadata> {
-  return {
-    title: 'Varnia Henry | Musician | Public Speaker',
-    description:
-      'Book a musician and speaker for events or inspiration. Spread joy with music and words. #PublicSpeaker #Singer #Motivational #Music #Jazz',
-  };
-}
+export const metadata: Metadata = {
+  title: 'Varnia Henry | Musician | Public Speaker',
+  description:
+    'Book a musician and speaker for events or inspiration. Spread joy with music and words. #PublicSpeaker #Singer #Motivational #Music #Jazz',
+};
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
