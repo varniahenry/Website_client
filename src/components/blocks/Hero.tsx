@@ -1,6 +1,5 @@
 import { HeroProps } from '@/types';
 import { Pacifico } from 'next/font/google';
-import { StrapiImage } from '../StrapiImage';
 import { getStrapiURL } from '@/utils/get-strapi-url';
 import Link from 'next/link';
 
