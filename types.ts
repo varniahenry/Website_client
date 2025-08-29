@@ -85,6 +85,8 @@ export interface HeroProps extends Base<'blocks.hero'> {
   cta?: LinkProps;
   darken: boolean;
   paragraph?: string;
+  needGap?: boolean;
+  alignment: 'Top' | 'Bottom';
 }
 
 export interface EventBlockProps extends Base<'blocks.event-block'> {

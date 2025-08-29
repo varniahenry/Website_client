@@ -1,9 +1,10 @@
 import { HeroProps } from '@/types';
-import { Pacifico } from 'next/font/google';
+import { Great_Vibes } from 'next/font/google';
 import { getStrapiURL } from '@/utils/get-strapi-url';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-const pacifico = Pacifico({
+const pacifico = Great_Vibes({
   weight: '400',
   subsets: ['latin'],
 });
@@ -16,12 +17,16 @@ export function Hero({
   paragraph,
   image,
   darken = false,
+  needGap,
+  alignment,
 }: Readonly<HeroProps>) {
   const imageUrl = image?.url
     ? image.url.startsWith('http')
       ? image.url
       : `${getStrapiURL()}${image.url}`
     : null;
+  console.log(alignment);
+  console.log(needGap);
   return (
     <section
       className={`relative w-full min-h-[30rem] md:min-h-[45rem] md:pt-20 bg-center bg-no-repeat md:bg-top bg-cover  ${
@@ -30,11 +35,12 @@ export function Hero({
       style={{
         backgroundImage: image?.url ? `url('${imageUrl}')` : 'none',
       }}>
-      <div className='w-full md:max-w-screen-xl text-center md:text-left p-5 items-center flex-col justify-center md:items-start mx-auto'>
-        <div className=' max-w-xl md:max-w-2xl mb-5 mx-auto md:mx-0'>
+      <div
+        className={`${alignment === 'Bottom' ? 'pt-[400px] md:pt-1' : ''} pb-5 w-full md:max-w-screen-xl text-center md:text-left  items-center flex-col justify-center md:items-start mx-auto`}>
+        <div className=' max-w-lg mb-5 mx-auto md:mx-0'>
           <h1 className='font-extrabold text-7xl md:text-8xl '>{heading}</h1>
         </div>
-        <div className='pt-[500px] md:pt-0'>
+        <div className={`max-w-xl  ${needGap ? `pt-[500px] ` : ``}md:pt-0`}>
           <h2
             className={`text-6xl md:text-7xl ${pacifico.className} text-[#E7CD78]`}>
             {subheading}

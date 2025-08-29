@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import { Pacifico } from 'next/font/google';
+import { Great_Vibes } from 'next/font/google';
 import {
   FaFacebook,
   FaInstagram,
@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { StrapiImage } from '../StrapiImage';
 
-const pacifico = Pacifico({
+const pacifico = Great_Vibes({
   weight: '400',
   subsets: ['latin'],
 });
