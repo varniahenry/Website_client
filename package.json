@@ -1,0 +1,41 @@
+{
+  "name": "varnia_website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@react-email/components": "^0.5.1",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.21",
+    "@types/qs": "^6.14.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.542.0",
+    "next": "15.5.0",
+    "qs": "^6.14.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-email": "^4.2.8",
+    "react-icons": "^5.5.0",
+    "react-markdown": "^9.1.0",
+    "resend": "^6.0.1",
+    "use-debounce": "^10.0.5",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/aos": "^3.0.7",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
