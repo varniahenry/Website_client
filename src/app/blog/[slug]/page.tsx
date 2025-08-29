@@ -1,4 +1,4 @@
-import { BlogPostProps, Block } from '@/types';
+import { BlogPostProps } from '@/types';
 import { Card, CardProps } from '@/src/components/Card';
 import { notFound } from 'next/navigation';
 import { formatDate } from '@/utils/format-date';
@@ -21,7 +21,7 @@ async function loader(slug: string) {
   return { blog: blog as BlogPostProps };
 }
 
-export const BlogCard = (props: Readonly<CardProps>) => (
+const BlogCard = (props: Readonly<CardProps>) => (
   <Card
     {...props}
     basePath='blog'

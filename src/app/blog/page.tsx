@@ -18,7 +18,7 @@ async function loader(slug: string) {
   return { blocks: data[0]?.blocks };
 }
 
-export const BlogCard = (props: Readonly<CardProps>) => (
+const BlogCard = (props: Readonly<CardProps>) => (
   <Card
     {...props}
     basePath='blog'
