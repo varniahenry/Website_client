@@ -1,3 +1,3 @@
 export function getStrapiURL() {
-  return process.env.STRAPI_API_URL ?? 'http://localhost:4200';
+  return process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4200';
 }
