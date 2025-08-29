@@ -9,7 +9,6 @@ import { BlogPostList } from '@/src/components/BlogPostList';
 
 interface PageProps {
   params: Promise<{ slug: string; page?: string }>;
-  page: string;
 }
 
 async function loader(slug: string) {

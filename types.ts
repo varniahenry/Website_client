@@ -114,7 +114,7 @@ export interface GalleryProps extends Base<'blocks.gallery'> {
 }
 
 export interface FullImageProps extends Base<'blocks.image'> {
-  image?: ImageProps;
+  image: ImageProps;
 }
 
 export interface SubscribeProps extends Base<'blocks.subscribe'> {
