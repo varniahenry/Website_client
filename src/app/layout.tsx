@@ -13,14 +13,6 @@ async function loader() {
   return { header: data?.header, footer: data?.footer };
 }
 
-export async function generateMetaData(): Promise<Metadata> {
-  const metaData = await getHeaderAndFooter();
-  return {
-    title: metaData?.title,
-    description: metaData?.description,
-  };
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
