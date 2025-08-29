@@ -34,23 +34,23 @@ export function Hero({
         <div className=' max-w-xl md:max-w-2xl mb-5 mx-auto md:mx-0'>
           <h1 className='font-extrabold text-7xl md:text-8xl '>{heading}</h1>
         </div>
-        <div className=''>
+        <div className='pt-[500px] md:pt-0'>
           <h2
             className={`text-6xl md:text-7xl ${pacifico.className} text-[#E7CD78]`}>
             {subheading}
           </h2>
           <h3 className='text-3xl mb-10'> {tag}</h3>
+          <h4 className='md:text-2xl font-bold '>{paragraph}</h4>
+          {cta && (
+            <div className='w-full md:max-w-sm text-center '>
+              <Link
+                className='text-white hover:bg-white hover:text-black bg-[#E7CD78] text-5xl font-bold p-2 rounded-3xl'
+                href={cta.href}>
+                {cta.text}
+              </Link>
+            </div>
+          )}
         </div>
-        <h4 className='md:text-2xl font-bold '>{paragraph}</h4>
-        {cta && (
-          <div className='w-full md:max-w-sm text-center '>
-            <Link
-              className='text-white hover:bg-white hover:text-black bg-[#E7CD78] text-5xl font-bold p-2 rounded-3xl'
-              href={cta.href}>
-              {cta.text}
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );
