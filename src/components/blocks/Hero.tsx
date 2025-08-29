@@ -23,8 +23,8 @@ export function Hero({
         darken ? `bg-blend-overlay bg-black/60` : ''
       }`}
       style={{
-        backgroundImage: image
-          ? `url('${getStrapiURL()}${image?.url}')`
+        backgroundImage: image?.url
+          ? `url('${getStrapiURL()}${image.url}')`
           : 'none',
       }}>
       <div className='w-full md:max-w-screen-xl text-center md:text-left p-5 items-center flex-col justify-center md:items-start mx-auto'>

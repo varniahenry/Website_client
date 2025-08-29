@@ -28,8 +28,11 @@ export default async function Home() {
       style={{
         backgroundImage:
           imagePath + data?.backgroundImage.url
-            ? `url('${imagePath}${data.backgroundImage.url}')`
+            ? `url('${data.backgroundImage.url}')`
             : 'none',
+        // imagePath + data?.backgroundImage.url
+        //   ? `url('${imagePath}${data.backgroundImage.url}')`
+        //   : 'none',
       }}>
       <div className='relative z-10 text-white min-h-screen mx-auto'>
         <BlockRenderer blocks={blocks} />
