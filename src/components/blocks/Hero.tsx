@@ -25,8 +25,6 @@ export function Hero({
       ? image.url
       : `${getStrapiURL()}${image.url}`
     : null;
-  console.log(alignment);
-  console.log(needGap);
   return (
     <section
       className={`relative w-full min-h-[30rem] md:min-h-[45rem] md:pt-20 bg-center bg-no-repeat md:bg-top bg-cover  ${
@@ -40,7 +38,7 @@ export function Hero({
         <div className=' max-w-lg mb-5 mx-auto md:mx-0'>
           <h1 className='font-extrabold text-7xl md:text-8xl '>{heading}</h1>
         </div>
-        <div className={`max-w-xl  ${needGap ? `pt-[500px] ` : ``}md:pt-0`}>
+        <div className={`max-w-xl  ${needGap ? `pt-[500px] ` : ``} md:pt-0`}>
           <h2
             className={`text-6xl md:text-7xl ${pacifico.className} text-[#E7CD78]`}>
             {subheading}
