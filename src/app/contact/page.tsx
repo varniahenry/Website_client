@@ -57,7 +57,7 @@ export default async function ContactPage() {
             <FaLinkedin className='hover:text-white text-4xl md:text-7xl hover:opacity-20 ' />
           </a>
           <a
-            href='mailto:varniahenry@gmail.com'
+            href={`mailto:${process.env.RESEND_FROM_EMAIL}`}
             target='_blank'>
             <FaEnvelope className='hover:text-white text-4xl md:text-7xl hover:opacity-20 ' />
           </a>
