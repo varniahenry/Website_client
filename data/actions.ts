@@ -214,7 +214,7 @@ export async function contactFormAction(prevState: any, formData: FormData) {
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
-      to: 'cmartells2@gmail.com',
+      to: process.env.RESEND_FROM_EMAIL!,
       subject: `New Contact Form Message from ${firstName} ${lastName}`,
       html: `
           <h2>New Contact Request</h2>
