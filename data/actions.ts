@@ -187,10 +187,8 @@ interface ContactFormState {
   successMessage?: string | null;
 }
 
-export async function contactFormAction(
-  prevState: ContactFormState,
-  formData: FormData
-) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function contactFormAction(prevState: any, formData: FormData) {
   const formDataObject = {
     firstName: formData.get('firstName') as string,
     lastName: formData.get('lastName') as string,
