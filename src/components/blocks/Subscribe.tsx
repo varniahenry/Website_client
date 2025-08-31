@@ -72,12 +72,8 @@ export function Subscribe({
             <label
               htmlFor='default-checkbox'
               className='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
-              I agree to receive email updates and offers from Varnia Henry.{' '}
-              <Link
-                className='underline'
-                href='/privacy-policy'>
-                Privacy Policy
-              </Link>
+              Please click in order to be able to subscribe to recieve email
+              updates and offers from Varnia Henry.{' '}
             </label>
           </div>
         </form>

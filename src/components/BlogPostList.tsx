@@ -60,13 +60,6 @@ export async function BlogPostList({
           ))}
         </div>
       )}
-      {/* {blogs.map((blog) => (
-          <Component
-            key={blog.documentId}
-            {...blog}
-            basePath={path}
-          />
-        ))} */}
       {showPagination && <PaginationComponent pageCount={pageCount} />}
     </section>
   );

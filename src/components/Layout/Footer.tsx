@@ -49,6 +49,11 @@ export function Footer({ data }: FooterProps) {
           <div>
             <span className='block text-sm text-[#E7CD78] sm:text-center '>
               {copy}
+              <Link
+                href={'/privacy-policy'}
+                className='underline hover:text-white '>
+                Privacy Policy
+              </Link>
             </span>
           </div>
           <div className='flex gap-4 text-lg mb-2 md:mb-0'>

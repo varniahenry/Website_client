@@ -1,5 +1,10 @@
-import type { Block } from '@/types';
+'use client';
 
+import React from 'react';
+import type { Block } from '@/types';
+import { Fade, AnimationType } from '@/src/components/Transitions/Fade';
+
+// Import your block components
 import { EventBlock } from './blocks/EventBlock';
 import { Paragraph } from './blocks/Paragraph';
 import { Hero } from './blocks/Hero';
@@ -9,67 +14,61 @@ import { Gallery } from './blocks/Gallery';
 import { Heading } from './blocks/Heading';
 import { Subscribe } from './blocks/Subscribe';
 
-function blockRenderer(block: Block, index: number) {
-  switch (block.__component) {
-    case `blocks.event-block`:
-      return (
-        <EventBlock
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.paragraph':
-      return (
-        <Paragraph
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.hero':
-      return (
-        <Hero
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.heading':
-      return (
-        <Heading
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.image':
-      return (
-        <FullImage
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.section-with-paragraph':
-      return (
-        <SectionWithParagraph
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.gallery':
-      return (
-        <Gallery
-          {...block}
-          key={index}
-        />
-      );
-    case 'blocks.subscribe':
-      return (
-        <Subscribe
-          {...block}
-          key={index}
-        />
-      );
-  }
-}
+// ---------------------------
+// Map Strapi block components
+// ---------------------------
+// Use `any` for props since each block has different props
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const COMPONENT_MAP: Record<string, React.FC<any>> = {
+  'blocks.event-block': EventBlock,
+  'blocks.paragraph': Paragraph,
+  'blocks.hero': Hero,
+  'blocks.image': FullImage,
+  'blocks.section-with-paragraph': SectionWithParagraph,
+  'blocks.gallery': Gallery,
+  'blocks.heading': Heading,
+  'blocks.subscribe': Subscribe,
+};
 
+// ---------------------------
+// Per-block animations
+// ---------------------------
+const BLOCK_ANIMATIONS: Record<string, AnimationType> = {
+  'blocks.hero': 'fade-up',
+  'blocks.paragraph': 'fade-left',
+  'blocks.image': 'fade-right',
+  'blocks.section-with-paragraph': 'scale-up',
+  'blocks.gallery': 'fade-up',
+  'blocks.heading': 'fade-up',
+  'blocks.subscribe': 'fade-left',
+  'blocks.event-block': 'fade-up',
+};
+
+// ---------------------------
+// Render blocks dynamically
+// ---------------------------
 export function BlockRenderer({ blocks }: { blocks: Block[] }) {
-  return blocks.map((block, index) => blockRenderer(block, index));
+  return (
+    <>
+      {blocks.map((block, index) => {
+        if (!block.__component) return null;
+
+        const Component = COMPONENT_MAP[block.__component];
+        if (!Component) return null;
+
+        const animation: AnimationType =
+          BLOCK_ANIMATIONS[block.__component] ?? 'fade-up';
+
+        // Spread the block object as props for the component
+        return (
+          <Fade
+            key={index}
+            index={index}
+            animation={animation}>
+            <Component {...block} />
+          </Fade>
+        );
+      })}
+    </>
+  );
 }
