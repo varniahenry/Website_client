@@ -36,7 +36,7 @@ export function EventBlock({ events, heading }: Readonly<EventBlockProps>) {
                 </div>
               </div>
               {index === events.length - 1 && (
-                <hr className='w-[75%] justify-self-center' />
+                <hr className='w-full sm:w-[75%] justify-self-center' />
               )}
             </div>
           ))
