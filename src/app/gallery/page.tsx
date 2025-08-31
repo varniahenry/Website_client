@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     'Experience vibrant moments from live shows, fetes, and speaking events. #Singer #Songwriter #Jazz #Soca #Storyteller #Canadian #Trinidad',
 };
+export const dynamic = 'force-dynamic';
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);

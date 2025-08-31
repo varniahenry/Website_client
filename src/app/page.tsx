@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     'Canadian singer, songwriter, and speaker blending Calypso, Soca, and Jazz to spread joy. #Singer #Musician #Jazz #Calypso #Soca #PublicSpeaker',
 };
 
+export const dynamic = 'force-dynamic';
+
 async function loader() {
   const data = await getHomePage();
   if (!data) return notFound();

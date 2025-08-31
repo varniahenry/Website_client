@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description:
     'Insights on music, Carnival, creativity, and joy from a Canadian-Trinidadian musician and speaker. #Music #JazzFusion #Fete #MotivationalSpeaker',
 };
+export const dynamic = 'force-dynamic';
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
