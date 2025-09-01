@@ -6,15 +6,18 @@ mailchimp.setConfig({
 });
 
 export async function addSubscriberService(email: string) {
+  console.log('In here');
   try {
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIANCE_ID!, {
       email_address: email,
       status: 'subscribed',
     });
+    console.log('Success');
     return {
       successmessage: `Thank you. ${email} has been subscribed successfully to our mailing list`,
     };
   } catch (error: unknown) {
+    console.log('Fail');
     const unknownError = error as ErrorResponse;
     if (unknownError.title === 'Member Exists') {
       return {

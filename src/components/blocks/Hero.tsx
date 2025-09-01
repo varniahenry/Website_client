@@ -2,7 +2,6 @@ import { HeroProps } from '@/types';
 import { Great_Vibes } from 'next/font/google';
 import { getStrapiURL } from '@/utils/get-strapi-url';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 const pacifico = Great_Vibes({
   weight: '400',

@@ -4,7 +4,6 @@ import type { SubscribeProps } from '@/types';
 import { usePathname } from 'next/navigation';
 import { subscribeAction } from '@/data/actions';
 import { SubmitButton } from '../SubmitButton';
-import Link from 'next/link';
 
 const INITIAL_STATE = {
   zodErrors: null,
@@ -58,22 +57,21 @@ export function Subscribe({
             <SubmitButton
               text={buttonText}
               disabled={!agreed}
-              // className=' flex-none rounded-md bg-[#E7CD78] px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white cursor-pointer'
             />
           </div>
           <div className='flex items-center mb-4'>
             <input
-              id='agree-checkbox'
+              name='agree'
               type='checkbox'
               checked={agreed}
               className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500  ring-offset-gray-800 focus:ring-2 '
               onChange={(e) => setAgreed(e.target.checked)}
             />
             <label
-              htmlFor='default-checkbox'
+              htmlFor='agree'
               className='ms-2 text-sm font-medium text-gray-300'>
-              Please click in order to be able to subscribe to recieve email
-              updates and offers from Varnia Henry.{' '}
+              Please click to be able to subscribe to receive email updates and
+              offers from Varnia Henry.{' '}
             </label>
           </div>
         </form>
