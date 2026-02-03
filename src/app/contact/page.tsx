@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { BlockRenderer } from '@/src/components/BlockRenderer';
 import {
+  FaBandcamp,
   FaEnvelope,
   FaFacebook,
   FaInstagram,
@@ -52,9 +53,9 @@ export default async function ContactPage() {
             <FaTiktok className='hover:text-white text-4xl md:text-7xl hover:opacity-20 ' />
           </a>
           <a
-            href='https://www.linkedin.com/in/varniahenry/'
+            href='https://varniahenry.bandcamp.com'
             target='_blank'>
-            <FaLinkedin className='hover:text-white text-4xl md:text-7xl hover:opacity-20 ' />
+            <FaBandcamp className='hover:text-white text-4xl md:text-7xl hover:opacity-20 ' />
           </a>
           <a
             href={`mailto:${process.env.RESEND_FROM_EMAIL}`}

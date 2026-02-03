@@ -1,6 +1,12 @@
 'use client';
 
-import { FaFacebook, FaInstagram, FaTiktok, FaLinkedin } from 'react-icons/fa6';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTiktok,
+  FaLinkedin,
+  FaBandcamp,
+} from 'react-icons/fa6';
 
 import { LinkProps, LogoProps } from '@/types';
 import Link from 'next/link';
@@ -73,9 +79,9 @@ export function Footer({ data }: FooterProps) {
               <FaTiktok className='hover:text-white' />
             </a>
             <a
-              href='https://www.linkedin.com/in/varniahenry/'
+              href='https://varniahenry.bandcamp.com'
               target='_blank'>
-              <FaLinkedin className='hover:text-white' />
+              <FaBandcamp className='hover:text-white' />
             </a>
           </div>
         </div>
