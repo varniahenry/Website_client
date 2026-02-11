@@ -38,7 +38,7 @@ export default async function Home() {
         backgroundImage: data?.backgroundImage.url
           ? `url('${imageUrl}')`
           : 'none',
-        backgroundPosition: 'center 5%',
+        backgroundPosition: 'center 15%',
       }}>
       <div className='relative z-10 text-white  min-h-screen mx-auto'>
         <BlockRenderer blocks={blocks} />
