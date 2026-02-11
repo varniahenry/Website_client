@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     'Learn about a vocalist and motivational speaker sharing culture, music, and stories across Canada and Trinidad. #Singer #Storyteller #Motivational',
 };
 
+export const dynamic = 'force-dynamic';
+
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
   if (data.length === 0) notFound();
