@@ -35,9 +35,9 @@ export function Hero({
       <div
         className={`${alignment === 'Bottom' ? 'pt-[400px] md:pt-1' : ''} pb-5 w-full md:max-w-screen-xl text-center md:text-left  items-center flex-col justify-center md:items-start mx-auto`}>
         <div className=' max-w-lg mb-5 mx-auto md:mx-0'>
-          <h1 className='font-extrabold text-7xl md:text-8xl '>{heading}</h1>
+          <h1 className='font-extrabold text-6xl md:text-8xl '>{heading}</h1>
         </div>
-        <div className={`max-w-xl  ${needGap ? `pt-[500px] ` : ``} md:pt-0`}>
+        <div className={`max-w-xl  ${needGap ? `pt-[300px] ` : ``} md:pt-0`}>
           <h2
             className={`text-6xl md:text-7xl ${pacifico.className} text-[#E7CD78]`}>
             {subheading}

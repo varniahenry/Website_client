@@ -11,14 +11,20 @@ export const metadata: Metadata = {
   description:
     'Insights on music, Carnival, creativity, and joy from a Canadian-Trinidadian musician and speaker. #Music #JazzFusion #Fete #MotivationalSpeaker',
 };
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
-  if (data.length === 0) notFound();
-  return { blocks: data[0]?.blocks };
-}
 
+  if (!data || data.length === 0) {
+    return notFound(); // Return empty array instead of undefined
+    // return { blocks: [] }; // Return empty array instead of undefined
+  }
+
+  // Ensure blocks is always an array
+  const blocks = data[0]?.blocks ?? [];
+  return { blocks };
+}
 const BlogCard = (props: Readonly<CardProps>) => (
   <Card
     {...props}
@@ -33,6 +39,14 @@ interface PageProps {
 export default async function BlogPage({ searchParams }: PageProps) {
   const { page, query } = await searchParams;
   const { blocks } = await loader('blog');
+
+  if (!blocks.length) {
+    return (
+      <div className='min-h-screen text-white flex items-center justify-center'>
+        No content available.
+      </div>
+    );
+  }
   return (
     <div className='min-h-screen'>
       <BlockRenderer blocks={blocks} />

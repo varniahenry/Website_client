@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'Canadian singer, songwriter, and speaker blending Calypso, Soca, and Jazz to spread joy. #Singer #Musician #Jazz #Calypso #Soca #PublicSpeaker',
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 async function loader() {
   const data = await getHomePage();
@@ -33,13 +33,14 @@ export default async function Home() {
   return (
     <main
       // className={`bg-cover bg-no-repeat bg-fixed  text-white  min-h-screen `}
-      className={`text-white min-h-screen bg-no-repeat bg-center bg-cover sm:bg-center sm:bg-cover `}
+      className={`text-white min-h-screen bg-no-repeat bg-cover  sm:bg-center `}
       style={{
         backgroundImage: data?.backgroundImage.url
           ? `url('${imageUrl}')`
           : 'none',
+        backgroundPosition: 'center 5%',
       }}>
-      <div className='relative z-10 text-white min-h-screen mx-auto'>
+      <div className='relative z-10 text-white  min-h-screen mx-auto'>
         <BlockRenderer blocks={blocks} />
       </div>
     </main>

@@ -1,9 +1,85 @@
-import { GalleryProps } from '@/types';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { GalleryProps, ImageProps } from '@/types';
 import { StrapiImage } from '../StrapiImage';
 import Link from 'next/link';
 import { getStrapiURL } from '@/utils/get-strapi-url';
+interface GalleryWithFetchProps extends Omit<GalleryProps, 'images'> {
+  documentId: string; // the page or block id to fetch gallery images
+  images?: ImageProps[]; // optional preloaded images
+}
 
-export function Gallery({ images }: Readonly<GalleryProps>) {
+export function Gallery({
+  images: initialImages,
+  documentId,
+}: GalleryWithFetchProps) {
+  const [images, setImages] = useState<ImageProps[]>(initialImages || []);
+  const [loading, setLoading] = useState<boolean>(!initialImages?.length);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (documentId && (!initialImages || initialImages.length === 0)) {
+      const fetchGallery = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+          const res = await fetch(
+            `${getStrapiURL()}/api/gallery-images?filters[documentId][$eq]=${documentId}&populate=*&pagination[pageSize]=1000`
+          );
+
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+          const data = await res.json();
+
+          // Map Strapi response to ImageProps
+          const galleryImages: ImageProps[] = data.data.map((img: any) => ({
+            id: img.id,
+            documentId: img.attributes.documentId,
+            url: img.attributes.url,
+            alternativeText: img.attributes.alternativeText,
+            width: img.attributes.width,
+            height: img.attributes.height,
+          }));
+
+          setImages(galleryImages);
+        } catch (err: any) {
+          console.error('Error fetching gallery images:', err);
+          setError('Failed to load gallery images.');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchGallery();
+    }
+  }, [documentId, initialImages]);
+
+  if (loading) {
+    return (
+      <div className='min-h-screen flex items-center justify-center text-white'>
+        Loading gallery...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='min-h-screen flex items-center justify-center text-red-500'>
+        {error}
+      </div>
+    );
+  }
+
+  if (!images.length) {
+    return (
+      <div className='min-h-screen flex items-center justify-center text-white'>
+        No Photos
+      </div>
+    );
+  }
+
   return (
     <section className=' my-3  grid grid-cols-gallery max-w-screen-xl mx-auto px-10 auto-rows-[10px]'>
       {images ? (

@@ -45,7 +45,10 @@ export async function getHomePage() {
 
   url.search = homePageQuery;
 
-  return fetchAPI(url.href, { method: 'GET' });
+  return fetchAPI(url.href, {
+    method: 'GET',
+    next: { revalidate: 60, tags: ['homepage'] },
+  });
 }
 
 const headerFooterQuery = qs.stringify({
@@ -82,7 +85,11 @@ export async function getHeaderAndFooter() {
   const path = '/api/header-and-footer';
   const url = new URL(path, BASE_URL);
   url.search = headerFooterQuery;
-  return fetchAPI(url.href, { method: 'GET' });
+
+  return fetchAPI(url.href, {
+    method: 'GET',
+    next: { revalidate: 3600, tags: ['layout'] },
+  });
 }
 
 const pageBySlugQuery = (slug: string) =>
@@ -134,7 +141,11 @@ export async function getPageBySlug(slug: string) {
   const path = '/api/pages';
   const url = new URL(path, BASE_URL);
   url.search = pageBySlugQuery(slug);
-  return await fetchAPI(url.href, { method: 'GET' });
+
+  return fetchAPI(url.href, {
+    method: 'GET',
+    next: { revalidate: 120, tags: [`page-${slug}`] },
+  });
 }
 
 export function getContent(

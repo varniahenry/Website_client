@@ -2,6 +2,9 @@ import { ParagraphProps } from '@/types';
 import ReactMarkdown from 'react-markdown';
 
 export function Paragraph({ content, isFaded }: Readonly<ParagraphProps>) {
+  if (!content || content.trim() === '') {
+    return null;
+  }
   return (
     <div data-aos='fade-in'>
       <div className={`w-screen ${isFaded ? `bg-black/70 pt-10` : ''}`}>

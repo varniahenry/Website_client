@@ -20,14 +20,31 @@ export const metadata: Metadata = {
     'Book a musician and speaker for events or inspiration. Spread joy with music and words. #PublicSpeaker #Singer #Motivational #Music #Jazz',
 };
 
+export const revalidate = 60;
+
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
-  if (data.length === 0) notFound();
-  return { blocks: data[0]?.blocks };
+
+  if (!data || data.length === 0) {
+    return notFound(); // Return empty array instead of undefined
+    // return { blocks: [] }; // Return empty array instead of undefined
+  }
+
+  // Ensure blocks is always an array
+  const blocks = data[0]?.blocks ?? [];
+  return { blocks };
 }
 
 export default async function ContactPage() {
   const { blocks } = await loader('contact');
+
+  if (!blocks.length) {
+    return (
+      <div className='min-h-screen text-white flex items-center justify-center'>
+        No content available.
+      </div>
+    );
+  }
 
   return (
     <section className='min-h-screen'>
