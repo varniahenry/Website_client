@@ -3,23 +3,28 @@
 import React from 'react';
 import type { Block } from '@/types';
 import { Fade, AnimationType } from '@/src/components/Transitions/Fade';
-
+import dynamic from 'next/dynamic';
 // Import your block components
 import { EventBlock } from './blocks/EventBlock';
 import { Paragraph } from './blocks/Paragraph';
 import { Hero } from './blocks/Hero';
 import { FullImage } from './blocks/FullImage';
 import { SectionWithParagraph } from './blocks/SectionWithParagraph';
-import { Gallery } from './blocks/Gallery';
+// import { Gallery } from './blocks/Gallery';
 import { Heading } from './blocks/Heading';
 import { Subscribe } from './blocks/Subscribe';
+
+const Gallery = dynamic(
+  () => import('./blocks/Gallery').then((mod) => mod.Gallery),
+  { ssr: false }
+);
 
 // ---------------------------
 // Map Strapi block components
 // ---------------------------
 // Use `any` for props since each block has different props
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const COMPONENT_MAP: Record<string, React.FC<any>> = {
+const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
   'blocks.event-block': EventBlock,
   'blocks.paragraph': Paragraph,
   'blocks.hero': Hero,
@@ -90,7 +95,7 @@ export function BlockRenderer({ blocks }: { blocks: Block[] }) {
           // Spread the block object as props for the component
           return (
             <Fade
-              key={index}
+              key={block.id ?? index}
               index={index}
               animation={animation}>
               <Component {...props} />
