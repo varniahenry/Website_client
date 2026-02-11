@@ -26,7 +26,7 @@ export function Gallery({
         setError(null);
         try {
           const res = await fetch(
-            `${getStrapiURL()}/api/gallery-images?filters[documentId][$eq]=${documentId}&populate=*&pagination[pageSize]=1000`
+            `${getStrapiURL()}/api/gallery-images?filters[documentId][$eq]=${documentId}&populate=*&pagination[pageSize]=50`
           );
 
           if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -43,7 +43,11 @@ export function Gallery({
             height: img.attributes.height,
           }));
 
-          setImages(galleryImages);
+          const uniqueImages = Array.from(
+            new Map(galleryImages.map((img) => [img.id, img])).values()
+          );
+
+          setImages(uniqueImages);
         } catch (err: any) {
           console.error('Error fetching gallery images:', err);
           setError('Failed to load gallery images.');
