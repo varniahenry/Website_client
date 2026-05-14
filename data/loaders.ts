@@ -99,42 +99,45 @@ const pageBySlugQuery = (slug: string) =>
         $eq: slug,
       },
     },
-    populate: {
-      blocks: {
-        on: {
-          'blocks.hero': {
-            populate: {
-              image: {
-                fields: ['url', 'alternativeText'],
-              },
-              cta: true,
-            },
-          },
-          'blocks.heading': {
-            populate: '*',
-          },
-          'blocks.image': {
-            populate: {
-              image: {
-                fields: ['url', 'alternativeText'],
-              },
-            },
-          },
-          'blocks.gallery': {
-            populate: '*',
-          },
-          'blocks.section-with-paragraph': {
-            populate: true,
-          },
-          'blocks.paragraph': {
-            populate: true,
-          },
-          'blocks.subscribe': {
-            populate: true,
-          },
-        },
-      },
-    },
+
+    populate: '*',
+
+    // populate: {
+    //   blocks: {
+    //     on: {
+    //       'blocks.hero': {
+    //         populate: {
+    //           image: {
+    //             fields: ['url', 'alternativeText'],
+    //           },
+    //           cta: true,
+    //         },
+    //       },
+    //       'blocks.heading': {
+    //         populate: '*',
+    //       },
+    //       'blocks.image': {
+    //         populate: {
+    //           image: {
+    //             fields: ['url', 'alternativeText'],
+    //           },
+    //         },
+    //       },
+    //       'blocks.gallery': {
+    //         populate: '*',
+    //       },
+    //       'blocks.section-with-paragraph': {
+    //         populate: true,
+    //       },
+    //       'blocks.paragraph': {
+    //         populate: true,
+    //       },
+    //       'blocks.subscribe': {
+    //         populate: true,
+    //       },
+    //     },
+    //   },
+    // },
   });
 
 export async function getPageBySlug(slug: string) {
@@ -152,7 +155,7 @@ export function getContent(
   path: string,
   featured?: boolean,
   query?: string,
-  page?: string
+  page?: string,
 ) {
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
