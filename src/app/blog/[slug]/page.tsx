@@ -52,13 +52,15 @@ export default async function SingleBlogPost({ params }: PageProps) {
         animation='fade-up'
         index={1}>
         <div>
-          <StrapiImage
-            src={image.url}
-            alt={image.alternativeText || 'No alternative text provided'}
-            width={1920}
-            height={1080}
-            className='w-full md:w-[70%] h-auto mx-auto'
-          />
+          {image?.url && (
+            <StrapiImage
+              src={image.url}
+              alt={image?.alternativeText || 'Blog image'}
+              width={1920}
+              height={1080}
+              className='w-full md:w-[70%] h-auto mx-auto'
+            />
+          )}
         </div>
       </Fade>
 
