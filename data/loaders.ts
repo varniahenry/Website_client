@@ -99,45 +99,42 @@ const pageBySlugQuery = (slug: string) =>
         $eq: slug,
       },
     },
-
-    populate: '*',
-
-    // populate: {
-    //   blocks: {
-    //     on: {
-    //       'blocks.hero': {
-    //         populate: {
-    //           image: {
-    //             fields: ['url', 'alternativeText'],
-    //           },
-    //           cta: true,
-    //         },
-    //       },
-    //       'blocks.heading': {
-    //         populate: '*',
-    //       },
-    //       'blocks.image': {
-    //         populate: {
-    //           image: {
-    //             fields: ['url', 'alternativeText'],
-    //           },
-    //         },
-    //       },
-    //       'blocks.gallery': {
-    //         populate: '*',
-    //       },
-    //       'blocks.section-with-paragraph': {
-    //         populate: true,
-    //       },
-    //       'blocks.paragraph': {
-    //         populate: true,
-    //       },
-    //       'blocks.subscribe': {
-    //         populate: true,
-    //       },
-    //     },
-    //   },
-    // },
+    populate: {
+      blocks: {
+        on: {
+          'blocks.hero': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              cta: true,
+            },
+          },
+          'blocks.heading': {
+            populate: '*',
+          },
+          'blocks.image': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+          'blocks.gallery': {
+            populate: '*',
+          },
+          'blocks.section-with-paragraph': {
+            populate: true,
+          },
+          'blocks.paragraph': {
+            populate: true,
+          },
+          'blocks.subscribe': {
+            populate: true,
+          },
+        },
+      },
+    },
   });
 
 export async function getPageBySlug(slug: string) {
