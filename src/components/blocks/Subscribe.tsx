@@ -20,7 +20,7 @@ export function Subscribe({
   const pathName = usePathname();
   const [formState, formAction] = useActionState(
     subscribeAction,
-    INITIAL_STATE
+    INITIAL_STATE,
   );
 
   const [agreed, setAgreed] = useState(false);
@@ -61,6 +61,7 @@ export function Subscribe({
           </div>
           <div className='flex items-center mb-4'>
             <input
+              id='agree'
               name='agree'
               type='checkbox'
               checked={agreed}
