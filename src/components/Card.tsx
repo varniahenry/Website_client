@@ -26,13 +26,15 @@ export function Card({
     <div className='max-w-sm border-2  col-span-full md:col-span-3 border-[#E7CD78] rounded-xl bg-black shadow-sm'>
       <Link href={`/${basePath}/${slug}`}>
         <div className='w-full md:h-96'>
-          <StrapiImage
-            src={image.url}
-            alt={image.alternativeText || 'No alternative text provided'}
-            width={400}
-            height={400}
-            className='rounded-t-xl w-full h-full object-cover'
-          />
+          {image?.url && (
+            <StrapiImage
+              src={image.url}
+              alt={image.alternativeText || 'No alternative text provided'}
+              width={400}
+              height={400}
+              className='rounded-t-xl w-full h-full object-cover'
+            />
+          )}
         </div>
         <div className='p-5'>
           <div className='mb-3'>
