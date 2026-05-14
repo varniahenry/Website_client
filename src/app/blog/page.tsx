@@ -40,25 +40,28 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const { page, query } = await searchParams;
   const { blocks } = await loader('blog');
 
-  if (!blocks.length) {
-    return (
-      <div className='min-h-screen text-white flex items-center justify-center'>
-        No content available.
-      </div>
-    );
-  }
-  return (
-    <div className='min-h-screen'>
-      <BlockRenderer blocks={blocks} />
-      <BlogPostList
-        component={BlogCard}
-        headline='Blog Posts'
-        path='/api/blog-posts'
-        showPagination
-        showSearch
-        query={query}
-        page={page}
-      />
-    </div>
-  );
+  console.log('BLOG BLOCKS:', blocks);
+
+  return <div className='min-h-screen'>TEST PAGE</div>;
 }
+// if (!blocks.length) {
+//   return (
+//     <div className='min-h-screen text-white flex items-center justify-center'>
+//       No content available.
+//     </div>
+//   );
+// }
+// return (
+//   <div className='min-h-screen'>
+//     <BlockRenderer blocks={blocks} />
+//     <BlogPostList
+//       component={BlogCard}
+//       headline='Blog Posts'
+//       path='/api/blog-posts'
+//       showPagination
+//       showSearch
+//       query={query}
+//       page={page}
+//     />
+//   </div>
+// );
