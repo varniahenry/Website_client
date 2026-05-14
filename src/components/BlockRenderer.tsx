@@ -16,7 +16,7 @@ import { Subscribe } from './blocks/Subscribe';
 
 const Gallery = dynamic(
   () => import('./blocks/Gallery').then((mod) => mod.Gallery),
-  { ssr: false }
+  { ssr: false },
 );
 
 // ---------------------------
@@ -62,7 +62,7 @@ function isBlockEmpty(block: Block): boolean {
     case 'blocks.section-with-paragraph':
       return !block.content?.trim();
     case 'blocks.event-block':
-      return !block.events?.length;
+      return false;
     case 'blocks.image':
       return !block.image?.url;
     case 'blocks.subscribe':
