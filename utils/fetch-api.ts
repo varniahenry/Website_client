@@ -10,6 +10,36 @@ interface FetchAPIOptions {
   next?: NextFetchRequestConfig;
 }
 
+// export async function fetchAPI(url: string, options: FetchAPIOptions) {
+//   const { method, authToken, body, next } = options;
+
+//   const headers: RequestInit & { next?: NextFetchRequestConfig } = {
+//     method,
+//     headers: {
+//       'Content-Type': 'application/json',
+//       ...(authToken && { Authorization: `Bearer ${authToken}` }),
+//     },
+//     ...(body && { body: JSON.stringify(body) }),
+//     ...(next ? { next } : { next: { revalidate: 60 } }),
+//   };
+
+//   try {
+//     const response = await fetch(url, headers);
+//     const contentType = response.headers.get('content-type');
+//     if (
+//       contentType &&
+//       contentType.includes('application/json') &&
+//       response.ok
+//     ) {
+//       return await response.json();
+//     } else {
+//       return { status: response.status, statusText: response.statusText };
+//     }
+//   } catch (error) {
+//     console.error(`Error ${method} data:`, error);
+//     throw error;
+//   }
+// }
 export async function fetchAPI(url: string, options: FetchAPIOptions) {
   const { method, authToken, body, next } = options;
 
@@ -17,7 +47,9 @@ export async function fetchAPI(url: string, options: FetchAPIOptions) {
     method,
     headers: {
       'Content-Type': 'application/json',
-      ...(authToken && { Authorization: `Bearer ${authToken}` }),
+      ...(authToken && {
+        Authorization: `Bearer ${authToken}`,
+      }),
     },
     ...(body && { body: JSON.stringify(body) }),
     ...(next ? { next } : { next: { revalidate: 60 } }),
@@ -25,16 +57,28 @@ export async function fetchAPI(url: string, options: FetchAPIOptions) {
 
   try {
     const response = await fetch(url, headers);
+
     const contentType = response.headers.get('content-type');
-    if (
-      contentType &&
-      contentType.includes('application/json') &&
-      response.ok
-    ) {
-      return await response.json();
-    } else {
-      return { status: response.status, statusText: response.statusText };
+
+    // Read body once
+    const data = contentType?.includes('application/json')
+      ? await response.json()
+      : await response.text();
+
+    if (!response.ok) {
+      console.error('Strapi API Error:', {
+        url,
+        status: response.status,
+        statusText: response.statusText,
+        data,
+      });
+
+      throw new Error(
+        `Strapi API Error: ${response.status} ${response.statusText}`,
+      );
     }
+
+    return data;
   } catch (error) {
     console.error(`Error ${method} data:`, error);
     throw error;

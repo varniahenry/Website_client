@@ -6,10 +6,27 @@ import { Footer } from '../components/Layout/Footer';
 
 const anonymousPro = Anonymous_Pro({ weight: '400', subsets: ['latin'] });
 
+// async function loader() {
+//   const { data } = await getHeaderAndFooter();
+//   if (!data) throw new Error('Failed to retrieve header and footer');
+//   return { header: data?.header, footer: data?.footer };
+// }
 async function loader() {
-  const { data } = await getHeaderAndFooter();
-  if (!data) throw new Error('Failed to retrieve header and footer');
-  return { header: data?.header, footer: data?.footer };
+  try {
+    const { data } = await getHeaderAndFooter();
+
+    return {
+      header: data?.header ?? null,
+      footer: data?.footer ?? null,
+    };
+  } catch (error) {
+    console.error('Layout fetch failed:', error);
+
+    return {
+      header: null,
+      footer: null,
+    };
+  }
 }
 
 export default async function RootLayout({
@@ -21,10 +38,10 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${anonymousPro.className} antialiased  `}>
-        <Header data={header} />
+        {header && <Header data={header} />}
         {children}
 
-        <Footer data={footer} />
+        {footer && <Footer data={footer} />}
       </body>
     </html>
   );
