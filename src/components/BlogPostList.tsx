@@ -18,14 +18,40 @@ async function loader(
   path: string,
   featured?: boolean,
   query?: string,
-  page?: string
+  page?: string,
 ) {
-  const { data, meta } = await getContent(path, featured, query, page);
-  return {
-    blogs: (data as BlogPostProps[]) || [],
-    pageCount: meta?.pagination.pageCount || 1,
-  };
+  try {
+    const res = await getContent(path, featured, query, page);
+
+    const data = res?.data ?? [];
+    const meta = res?.meta ?? { pagination: { pageCount: 1 } };
+
+    return {
+      blogs: data as BlogPostProps[],
+      pageCount: meta?.pagination?.pageCount ?? 1,
+    };
+  } catch (error) {
+    console.error('BlogPostList loader failed:', error);
+
+    return {
+      blogs: [],
+      pageCount: 1,
+    };
+  }
 }
+
+// async function loader(
+//   path: string,
+//   featured?: boolean,
+//   query?: string,
+//   page?: string
+// ) {
+//   const { data, meta } = await getContent(path, featured, query, page);
+//   return {
+//     blogs: (data as BlogPostProps[]) || [],
+//     pageCount: meta?.pagination.pageCount || 1,
+//   };
+// }
 
 export async function BlogPostList({
   featured,
@@ -45,13 +71,13 @@ export async function BlogPostList({
         {headline}
       </h3>
       {showSearch && <Search />}
-      {blogs.length === 0 ? (
+      {(blogs ?? []).length === 0 ? (
         <div className='justify-self-center mb-10'>
           <h4 className='text-center text-4xl'>No Posts</h4>
         </div>
       ) : (
         <div className='grid justify-center md:justify-normal md:grid-cols-list gap-8'>
-          {blogs.map((blog) => (
+          {(blogs ?? []).map((blog) => (
             <Component
               key={blog.documentId}
               {...blog}
